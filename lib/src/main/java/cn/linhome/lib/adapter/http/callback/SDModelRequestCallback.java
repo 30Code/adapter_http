@@ -1,8 +1,8 @@
-package com.fanwe.lib.adapter.http.callback;
+package cn.linhome.lib.adapter.http.callback;
 
 import android.text.TextUtils;
 
-import com.fanwe.lib.adapter.http.model.SDResponse;
+import cn.linhome.lib.adapter.http.model.SDResponse;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

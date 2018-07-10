@@ -1,12 +1,12 @@
-package com.fanwe.lib.adapter.http;
+package cn.linhome.lib.adapter.http;
 
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.fanwe.lib.adapter.http.callback.SDRequestCallback;
-import com.fanwe.lib.adapter.http.handler.SDRequestHandler;
-import com.fanwe.lib.adapter.http.model.SDRequestParams;
-import com.fanwe.lib.adapter.http.model.SDResponse;
+import cn.linhome.lib.adapter.http.callback.SDRequestCallback;
+import cn.linhome.lib.adapter.http.handler.SDRequestHandler;
+import cn.linhome.lib.adapter.http.model.SDRequestParams;
+import cn.linhome.lib.adapter.http.model.SDResponse;
 
 import java.util.Iterator;
 import java.util.WeakHashMap;

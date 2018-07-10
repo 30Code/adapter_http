@@ -1,4 +1,4 @@
-package com.fanwe.lib.adapter.http.model;
+package cn.linhome.lib.adapter.http.model;
 
 public class SDMultiFile
 {
