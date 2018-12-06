@@ -3,28 +3,28 @@ package cn.linhome.lib.adapter.http;
 import android.text.TextUtils;
 import android.util.Log;
 
-import cn.linhome.lib.adapter.http.callback.SDRequestCallback;
-import cn.linhome.lib.adapter.http.handler.SDRequestHandler;
-import cn.linhome.lib.adapter.http.model.SDRequestParams;
-import cn.linhome.lib.adapter.http.model.SDResponse;
+import cn.linhome.lib.adapter.http.callback.FRequestCallback;
+import cn.linhome.lib.adapter.http.handler.FRequestHandler;
+import cn.linhome.lib.adapter.http.model.FRequestParams;
+import cn.linhome.lib.adapter.http.model.FResponse;
 
 import java.util.Iterator;
 import java.util.WeakHashMap;
 import java.util.Map.Entry;
 
-public abstract class SDHttpUtil
+public abstract class FHttpUtil
 {
     public static final String TAG = "SDHttpUtil";
-    private static WeakHashMap<SDRequestHandler, SDHttpUtil.RequestInfo> sMapRequestInfo = new WeakHashMap();
+    private static WeakHashMap<FRequestHandler, FHttpUtil.RequestInfo> sMapRequestInfo = new WeakHashMap();
     private static boolean sDebug;
-    private static final SDRequestCallback sDefaultRequestCallback = new SDRequestCallback()
+    private static final FRequestCallback sDefaultRequestCallback = new FRequestCallback()
     {
-        protected void onSuccess(SDResponse resp)
+        protected void onSuccess(FResponse resp)
         {
         }
     };
 
-    public SDHttpUtil()
+    public FHttpUtil()
     {
     }
 
@@ -33,25 +33,25 @@ public abstract class SDHttpUtil
         sDebug = debug;
     }
 
-    public final SDRequestHandler post(SDRequestParams params, SDRequestCallback callback)
+    public final FRequestHandler post(FRequestParams params, FRequestCallback callback)
     {
         callback = this.checkCallback(params, callback);
         this.beforeImpl(params, callback);
-        SDRequestHandler requestHandler = this.postImpl(params, callback);
+        FRequestHandler requestHandler = this.postImpl(params, callback);
         this.afterImpl(callback, params, requestHandler);
         return requestHandler;
     }
 
-    public final SDRequestHandler get(SDRequestParams params, SDRequestCallback callback)
+    public final FRequestHandler get(FRequestParams params, FRequestCallback callback)
     {
         callback = this.checkCallback(params, callback);
         this.beforeImpl(params, callback);
-        SDRequestHandler requestHandler = this.getImpl(params, callback);
+        FRequestHandler requestHandler = this.getImpl(params, callback);
         this.afterImpl(callback, params, requestHandler);
         return requestHandler;
     }
 
-    private void beforeImpl(SDRequestParams params, SDRequestCallback callback)
+    private void beforeImpl(FRequestParams params, FRequestCallback callback)
     {
         if (params != null && params.isNeedCancelSameRequest())
         {
@@ -60,7 +60,7 @@ public abstract class SDHttpUtil
 
     }
 
-    private void cancelSameRequest(SDRequestParams params)
+    private void cancelSameRequest(FRequestParams params)
     {
         String actInfo = params.getActInfo();
         if (!TextUtils.isEmpty(actInfo))
@@ -72,9 +72,9 @@ public abstract class SDHttpUtil
 
                 while (it.hasNext())
                 {
-                    Entry<SDRequestHandler, SDHttpUtil.RequestInfo> item = (Entry) it.next();
-                    SDRequestHandler requestHandler = (SDRequestHandler) item.getKey();
-                    SDHttpUtil.RequestInfo requestInfo = (SDHttpUtil.RequestInfo) item.getValue();
+                    Entry<FRequestHandler, FHttpUtil.RequestInfo> item = (Entry) it.next();
+                    FRequestHandler requestHandler = (FRequestHandler) item.getKey();
+                    FHttpUtil.RequestInfo requestInfo = (FHttpUtil.RequestInfo) item.getValue();
                     if (actInfo.equals(requestInfo.actInfo))
                     {
                         if (requestHandler != null)
@@ -105,9 +105,9 @@ public abstract class SDHttpUtil
 
                 while (it.hasNext())
                 {
-                    Entry<SDRequestHandler, SDHttpUtil.RequestInfo> item = (Entry) it.next();
-                    SDRequestHandler requestHandler = (SDRequestHandler) item.getKey();
-                    SDHttpUtil.RequestInfo requestInfo = (SDHttpUtil.RequestInfo) item.getValue();
+                    Entry<FRequestHandler, FHttpUtil.RequestInfo> item = (Entry) it.next();
+                    FRequestHandler requestHandler = (FRequestHandler) item.getKey();
+                    FHttpUtil.RequestInfo requestInfo = (FHttpUtil.RequestInfo) item.getValue();
                     if (cancelTag.equals(requestInfo.cancelTag))
                     {
                         if (requestHandler != null)
@@ -138,8 +138,8 @@ public abstract class SDHttpUtil
 
                 while (it.hasNext())
                 {
-                    Entry<SDRequestHandler, SDHttpUtil.RequestInfo> item = (Entry) it.next();
-                    SDRequestHandler requestHandler = (SDRequestHandler) item.getKey();
+                    Entry<FRequestHandler, FHttpUtil.RequestInfo> item = (Entry) it.next();
+                    FRequestHandler requestHandler = (FRequestHandler) item.getKey();
                     if (requestHandler != null)
                     {
                         requestHandler.cancel();
@@ -156,12 +156,12 @@ public abstract class SDHttpUtil
         }
     }
 
-    private void afterImpl(SDRequestCallback callback, SDRequestParams params, SDRequestHandler requestHandler)
+    private void afterImpl(FRequestCallback callback, FRequestParams params, FRequestHandler requestHandler)
     {
         callback.setRequestHandler(requestHandler);
         if (params != null && requestHandler != null)
         {
-            SDHttpUtil.RequestInfo requestInfo = new SDHttpUtil.RequestInfo();
+            FHttpUtil.RequestInfo requestInfo = new FHttpUtil.RequestInfo();
             requestInfo.actInfo = params.getActInfo();
             String cancelTag = callback.getCancelTag();
             if (TextUtils.isEmpty(cancelTag))
@@ -179,7 +179,7 @@ public abstract class SDHttpUtil
 
     }
 
-    private SDRequestCallback checkCallback(SDRequestParams params, SDRequestCallback callback)
+    private FRequestCallback checkCallback(FRequestParams params, FRequestCallback callback)
     {
         if (callback == null)
         {
@@ -190,9 +190,9 @@ public abstract class SDHttpUtil
         return callback;
     }
 
-    protected abstract SDRequestHandler postImpl(SDRequestParams var1, SDRequestCallback var2);
+    protected abstract FRequestHandler postImpl(FRequestParams var1, FRequestCallback var2);
 
-    protected abstract SDRequestHandler getImpl(SDRequestParams var1, SDRequestCallback var2);
+    protected abstract FRequestHandler getImpl(FRequestParams var1, FRequestCallback var2);
 
     private static class RequestInfo
     {

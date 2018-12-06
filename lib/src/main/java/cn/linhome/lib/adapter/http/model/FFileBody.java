@@ -4,18 +4,18 @@ import android.text.TextUtils;
 
 import java.io.File;
 
-public class SDFileBody
+public class FFileBody
 {
     private final File file;
     private final String fileName;
     private final String contentType;
 
-    public SDFileBody(File file, String contentType)
+    public FFileBody(File file, String contentType)
     {
         this(file, contentType, (String) null);
     }
 
-    public SDFileBody(File file, String contentType, String fileName)
+    public FFileBody(File file, String contentType, String fileName)
     {
         this.file = file;
         if (TextUtils.isEmpty(contentType))

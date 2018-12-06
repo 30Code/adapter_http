@@ -1,11 +1,11 @@
 package cn.linhome.lib.adapter.http.model;
 
-public class SDMultiFile
+public class FMultiFile
 {
     public final String key;
-    public final SDFileBody fileBody;
+    public final FFileBody fileBody;
 
-    public SDMultiFile(String key, SDFileBody fileBody)
+    public FMultiFile(String key, FFileBody fileBody)
     {
         this.key = key;
         this.fileBody = fileBody;
@@ -16,7 +16,7 @@ public class SDMultiFile
         return this.key;
     }
 
-    public SDFileBody getFileBody()
+    public FFileBody getFileBody()
     {
         return this.fileBody;
     }

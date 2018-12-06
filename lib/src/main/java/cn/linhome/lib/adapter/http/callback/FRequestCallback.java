@@ -3,36 +3,36 @@ package cn.linhome.lib.adapter.http.callback;
 import android.os.Handler;
 import android.os.Looper;
 
-import cn.linhome.lib.adapter.http.handler.SDRequestHandler;
-import cn.linhome.lib.adapter.http.model.SDRequestParams;
-import cn.linhome.lib.adapter.http.model.SDResponse;
+import cn.linhome.lib.adapter.http.handler.FRequestHandler;
+import cn.linhome.lib.adapter.http.model.FRequestParams;
+import cn.linhome.lib.adapter.http.model.FResponse;
 
-public abstract class SDRequestCallback
+public abstract class FRequestCallback
 {
     private Handler mHandler = new Handler(Looper.getMainLooper());
-    private SDRequestParams mRequestParams;
-    private SDRequestHandler mRequestHandler;
+    private FRequestParams mRequestParams;
+    private FRequestHandler mRequestHandler;
 
-    public SDRequestCallback()
+    public FRequestCallback()
     {
     }
 
-    public SDRequestHandler getRequestHandler()
+    public FRequestHandler getRequestHandler()
     {
         return this.mRequestHandler;
     }
 
-    public void setRequestHandler(SDRequestHandler requestHandler)
+    public void setRequestHandler(FRequestHandler requestHandler)
     {
         this.mRequestHandler = requestHandler;
     }
 
-    public SDRequestParams getRequestParams()
+    public FRequestParams getRequestParams()
     {
         return this.mRequestParams;
     }
 
-    public void setRequestParams(SDRequestParams requestParams)
+    public void setRequestParams(FRequestParams requestParams)
     {
         this.mRequestParams = requestParams;
     }
@@ -59,25 +59,25 @@ public abstract class SDRequestCallback
     {
     }
 
-    protected void onSuccessBefore(SDResponse resp)
+    protected void onSuccessBefore(FResponse resp)
     {
     }
 
-    protected abstract void onSuccess(SDResponse var1);
+    protected abstract void onSuccess(FResponse var1);
 
-    protected void onSuccessAfter(SDResponse resp)
+    protected void onSuccessAfter(FResponse resp)
     {
     }
 
-    protected void onError(SDResponse resp)
+    protected void onError(FResponse resp)
     {
     }
 
-    protected void onCancel(SDResponse resp)
+    protected void onCancel(FResponse resp)
     {
     }
 
-    protected void onFinish(SDResponse resp)
+    protected void onFinish(FResponse resp)
     {
     }
 
@@ -88,28 +88,28 @@ public abstract class SDRequestCallback
         this.onStartAfter();
     }
 
-    private void onSuccessInternal(SDResponse resp)
+    private void onSuccessInternal(FResponse resp)
     {
         this.onSuccessBefore(resp);
         this.onSuccess(resp);
         this.onSuccessAfter(resp);
     }
 
-    private void onErrorInternal(SDResponse resp)
+    private void onErrorInternal(FResponse resp)
     {
         this.onError(resp);
     }
 
-    private void onCancelInternal(SDResponse resp)
+    private void onCancelInternal(FResponse resp)
     {
         this.onCancel(resp);
-        this.setRequestHandler((SDRequestHandler) null);
+        this.setRequestHandler((FRequestHandler) null);
     }
 
-    private void onFinishInternal(SDResponse resp)
+    private void onFinishInternal(FResponse resp)
     {
         this.onFinish(resp);
-        this.setRequestHandler((SDRequestHandler) null);
+        this.setRequestHandler((FRequestHandler) null);
     }
 
     public void notifyStart()
@@ -123,14 +123,14 @@ public abstract class SDRequestCallback
             {
                 public void run()
                 {
-                    SDRequestCallback.this.onStartInternal();
+                    FRequestCallback.this.onStartInternal();
                 }
             });
         }
 
     }
 
-    public void notifySuccess(final SDResponse resp)
+    public void notifySuccess(final FResponse resp)
     {
         if (this.isMainLooper())
         {
@@ -141,14 +141,14 @@ public abstract class SDRequestCallback
             {
                 public void run()
                 {
-                    SDRequestCallback.this.onSuccessInternal(resp);
+                    FRequestCallback.this.onSuccessInternal(resp);
                 }
             });
         }
 
     }
 
-    public void notifyError(final SDResponse resp)
+    public void notifyError(final FResponse resp)
     {
         if (this.isMainLooper())
         {
@@ -159,14 +159,14 @@ public abstract class SDRequestCallback
             {
                 public void run()
                 {
-                    SDRequestCallback.this.onErrorInternal(resp);
+                    FRequestCallback.this.onErrorInternal(resp);
                 }
             });
         }
 
     }
 
-    public void notifyCancel(final SDResponse resp)
+    public void notifyCancel(final FResponse resp)
     {
         if (this.isMainLooper())
         {
@@ -177,14 +177,14 @@ public abstract class SDRequestCallback
             {
                 public void run()
                 {
-                    SDRequestCallback.this.onCancelInternal(resp);
+                    FRequestCallback.this.onCancelInternal(resp);
                 }
             });
         }
 
     }
 
-    public void notifyFinish(final SDResponse resp)
+    public void notifyFinish(final FResponse resp)
     {
         if (this.isMainLooper())
         {
@@ -195,7 +195,7 @@ public abstract class SDRequestCallback
             {
                 public void run()
                 {
-                    SDRequestCallback.this.onFinishInternal(resp);
+                    FRequestCallback.this.onFinishInternal(resp);
                 }
             });
         }

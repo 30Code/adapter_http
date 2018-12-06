@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class SDRequestParams
+public class FRequestParams
 {
     private Map<String, Object> mData = new LinkedHashMap();
-    private Map<String, SDFileBody> mDataFile = new LinkedHashMap();
-    private List<SDMultiFile> mDataMultiFile = new ArrayList();
+    private Map<String, FFileBody> mDataFile = new LinkedHashMap();
+    private List<FMultiFile> mDataMultiFile = new ArrayList();
     private String url;
     private int mRequestDataType;
     private int mResponseDataType;
@@ -23,11 +23,11 @@ public class SDRequestParams
     private boolean mIsNeedCancelSameRequest = false;
     private String mCancelTag;
 
-    public SDRequestParams()
+    public FRequestParams()
     {
     }
 
-    public SDRequestParams put(String key, Object value)
+    public FRequestParams put(String key, Object value)
     {
         if (value != null)
         {
@@ -42,27 +42,27 @@ public class SDRequestParams
         return this.mData.get(key);
     }
 
-    public SDRequestParams putFile(String key, File file)
+    public FRequestParams putFile(String key, File file)
     {
         this.putFile(key, file, (String) null, (String) null);
         return this;
     }
 
-    public SDRequestParams putFile(String key, File file, String contentType, String fileName)
+    public FRequestParams putFile(String key, File file, String contentType, String fileName)
     {
-        this.mDataFile.put(key, new SDFileBody(file, contentType, fileName));
+        this.mDataFile.put(key, new FFileBody(file, contentType, fileName));
         return this;
     }
 
-    public SDRequestParams putMultiFile(String key, File file)
+    public FRequestParams putMultiFile(String key, File file)
     {
         this.putMultiFile(key, file, (String) null, (String) null);
         return this;
     }
 
-    public SDRequestParams putMultiFile(String key, File file, String contentType, String fileName)
+    public FRequestParams putMultiFile(String key, File file, String contentType, String fileName)
     {
-        SDMultiFile multiFile = new SDMultiFile(key, new SDFileBody(file, contentType, fileName));
+        FMultiFile multiFile = new FMultiFile(key, new FFileBody(file, contentType, fileName));
         this.mDataMultiFile.add(multiFile);
         return this;
     }
@@ -72,7 +72,7 @@ public class SDRequestParams
         return this.mData;
     }
 
-    public SDRequestParams setData(Map<String, Object> data)
+    public FRequestParams setData(Map<String, Object> data)
     {
         if (data != null)
         {
@@ -82,12 +82,12 @@ public class SDRequestParams
         return this;
     }
 
-    public Map<String, SDFileBody> getDataFile()
+    public Map<String, FFileBody> getDataFile()
     {
         return this.mDataFile;
     }
 
-    public SDRequestParams setDataFile(Map<String, SDFileBody> dataFile)
+    public FRequestParams setDataFile(Map<String, FFileBody> dataFile)
     {
         if (dataFile != null)
         {
@@ -97,12 +97,12 @@ public class SDRequestParams
         return this;
     }
 
-    public List<SDMultiFile> getDataMultiFile()
+    public List<FMultiFile> getDataMultiFile()
     {
         return this.mDataMultiFile;
     }
 
-    public SDRequestParams setDataMultiFile(List<SDMultiFile> dataMultiFile)
+    public FRequestParams setDataMultiFile(List<FMultiFile> dataMultiFile)
     {
         if (dataMultiFile != null)
         {
@@ -117,7 +117,7 @@ public class SDRequestParams
         return this.mRequestDataType;
     }
 
-    public SDRequestParams setRequestDataType(int requestDataType)
+    public FRequestParams setRequestDataType(int requestDataType)
     {
         this.mRequestDataType = requestDataType;
         return this;
@@ -128,7 +128,7 @@ public class SDRequestParams
         return this.mResponseDataType;
     }
 
-    public SDRequestParams setResponseDataType(int responseDataType)
+    public FRequestParams setResponseDataType(int responseDataType)
     {
         this.mResponseDataType = responseDataType;
         return this;
@@ -139,7 +139,7 @@ public class SDRequestParams
         return this.url;
     }
 
-    public SDRequestParams setUrl(String url)
+    public FRequestParams setUrl(String url)
     {
         this.url = url;
         return this;
@@ -150,7 +150,7 @@ public class SDRequestParams
         return this.mIsNeedProxy;
     }
 
-    public SDRequestParams setNeedProxy(boolean isNeedProxy)
+    public FRequestParams setNeedProxy(boolean isNeedProxy)
     {
         this.mIsNeedProxy = isNeedProxy;
         return this;
@@ -161,7 +161,7 @@ public class SDRequestParams
         return this.mIsNeedCache;
     }
 
-    public SDRequestParams setNeedCache(boolean isNeedCache)
+    public FRequestParams setNeedCache(boolean isNeedCache)
     {
         this.mIsNeedCache = isNeedCache;
         return this;
@@ -172,7 +172,7 @@ public class SDRequestParams
         return this.mIsNeedShowErrorMsg;
     }
 
-    public SDRequestParams setNeedShowErrorMsg(boolean isNeedShowErrorMsg)
+    public FRequestParams setNeedShowErrorMsg(boolean isNeedShowErrorMsg)
     {
         this.mIsNeedShowErrorMsg = isNeedShowErrorMsg;
         return this;
@@ -183,13 +183,13 @@ public class SDRequestParams
         return this.mIsNeedCancelSameRequest;
     }
 
-    public SDRequestParams setNeedCancelSameRequest(boolean needCancelSameRequest)
+    public FRequestParams setNeedCancelSameRequest(boolean needCancelSameRequest)
     {
         this.mIsNeedCancelSameRequest = needCancelSameRequest;
         return this;
     }
 
-    public SDRequestParams putCtl(String ctl)
+    public FRequestParams putCtl(String ctl)
     {
         return this.put("ctl", ctl);
     }
@@ -199,7 +199,7 @@ public class SDRequestParams
         return this.get("ctl");
     }
 
-    public SDRequestParams putAct(String act)
+    public FRequestParams putAct(String act)
     {
         return this.put("act", act);
     }
@@ -229,7 +229,7 @@ public class SDRequestParams
         return this.mIsNeedCheckLoginState;
     }
 
-    public SDRequestParams setNeedCheckLoginState(boolean isNeedCheckLoginState)
+    public FRequestParams setNeedCheckLoginState(boolean isNeedCheckLoginState)
     {
         this.mIsNeedCheckLoginState = isNeedCheckLoginState;
         return this;

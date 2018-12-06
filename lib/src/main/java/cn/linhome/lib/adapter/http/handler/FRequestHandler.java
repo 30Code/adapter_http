@@ -1,6 +1,6 @@
 package cn.linhome.lib.adapter.http.handler;
 
-public interface SDRequestHandler
+public interface FRequestHandler
 {
     void cancel();
 }

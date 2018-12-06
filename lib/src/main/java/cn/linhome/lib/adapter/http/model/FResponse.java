@@ -1,17 +1,17 @@
 package cn.linhome.lib.adapter.http.model;
 
-public class SDResponse
+public class FResponse
 {
     private String result;
     private String decryptedResult;
     private int httpCode;
     private Throwable throwable;
 
-    public SDResponse()
+    public FResponse()
     {
     }
 
-    public SDResponse setThrowable(Throwable throwable)
+    public FResponse setThrowable(Throwable throwable)
     {
         this.throwable = throwable;
         return this;
@@ -27,7 +27,7 @@ public class SDResponse
         return this.result;
     }
 
-    public SDResponse setResult(String result)
+    public FResponse setResult(String result)
     {
         this.result = result;
         return this;
@@ -38,7 +38,7 @@ public class SDResponse
         return this.httpCode;
     }
 
-    public SDResponse setHttpCode(int httpCode)
+    public FResponse setHttpCode(int httpCode)
     {
         this.httpCode = httpCode;
         return this;

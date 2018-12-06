@@ -2,17 +2,17 @@ package cn.linhome.lib.adapter.http.callback;
 
 import android.text.TextUtils;
 
-import cn.linhome.lib.adapter.http.model.SDResponse;
+import cn.linhome.lib.adapter.http.model.FResponse;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class SDModelRequestCallback<T> extends SDRequestCallback
+public abstract class FModelRequestCallback<T> extends FRequestCallback
 {
     public T actModel;
     private Class<T> mModelClass;
 
-    public SDModelRequestCallback()
+    public FModelRequestCallback()
     {
     }
 
@@ -36,7 +36,7 @@ public abstract class SDModelRequestCallback<T> extends SDRequestCallback
 
     }
 
-    protected void onSuccessBefore(SDResponse resp)
+    protected void onSuccessBefore(FResponse resp)
     {
         if (this.mModelClass != null)
         {
