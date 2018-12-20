@@ -252,7 +252,7 @@ public class FRequestParams
                 Entry<String, Object> item = (Entry) var3.next();
                 if (i == 0)
                 {
-                    sb.append("?");
+                    sb.append("/");
                 }
 
                 sb.append((String) item.getKey()).append("=").append(item.getValue()).append("&");
